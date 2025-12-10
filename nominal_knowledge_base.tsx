@@ -1,0 +1,809 @@
+import React, { useState } from 'react';
+import { Search, ChevronDown, ChevronRight, BookOpen, Zap, Target, Users, Briefcase, Code, MessageSquare } from 'lucide-react';
+
+const NominalKnowledgeBase = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [expandedSections, setExpandedSections] = useState({});
+  const [activeTab, setActiveTab] = useState('overview');
+
+  const toggleSection = (section) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
+  const knowledgeBase = {
+    overview: {
+      title: "Platform Overview",
+      icon: BookOpen,
+      content: {
+        "What Nominal Does": {
+          summary: "AI-powered finance automation platform that eliminates manual work in month-end close, reconciliation, and variance analysis",
+          details: [
+            "Automates finance and accounting processes through AI agents",
+            "Focuses on month-end close, consolidation, and variance analysis",
+            "Built on 'shadow ledger' architecture - integrates with ERPs without migration",
+            "Serves CFOs and finance teams dealing with complex multi-entity operations",
+            "Primary value: 70% reduction in close time through automated intercompany matching, intelligent variance analysis, and seamless multi-entity consolidation"
+          ]
+        },
+        "Shadow Ledger Architecture": {
+          summary: "Core technical approach that enables multi-ERP integration without data migration",
+          details: [
+            "Creates a unified view across multiple ERP systems by replicating GL data",
+            "No need to migrate existing data or change current systems - we sit alongside",
+            "Maintains data integrity while providing centralized automation",
+            "Enables cross-entity reconciliation and consolidation",
+            "Read-only integration for most ERPs (Sage Intacct supports write-back)",
+            "Data synced via API, SFTP, or direct database connection"
+          ]
+        },
+        "Primary Value Propositions": {
+          summary: "Key benefits that resonate with finance leaders",
+          details: [
+            "Reduces month-end close time by 70% on average",
+            "Automates ~70% of flux analysis and transaction matching",
+            "Eliminates manual consolidation and reconciliation work",
+            "Provides real-time visibility into financial operations",
+            "Scales with organizational complexity without adding headcount",
+            "SOC 1 & SOC 2 Type II certified for enterprise security",
+            "4-9 week implementation (faster than traditional solutions)"
+          ]
+        },
+        "Ideal Customer Profile": {
+          summary: "Best fit organizations for Nominal",
+          details: [
+            "Multi-entity organizations (5+ entities is the sweet spot)",
+            "Companies with complex intercompany transactions",
+            "Organizations using multiple ERPs across entities",
+            "Finance teams spending 5-10 days on month-end close",
+            "Companies experiencing growth and can't scale finance headcount proportionally",
+            "Public companies or those with stringent audit requirements",
+            "Middle-market to enterprise ($50M+ revenue typical)"
+          ]
+        }
+      }
+    },
+    agents: {
+      title: "AI Agent Types & Modules",
+      icon: Zap,
+      content: {
+        "Consolidation Module": {
+          summary: "Core multi-entity consolidation with automated eliminations",
+          details: [
+            "Purpose: Consolidate financials across multiple legal entities with different ERPs",
+            "Key features: Entity structure management, chart of accounts mapping, intercompany elimination rules",
+            "Automation level: 95% for consolidation rollup, 70-90% for eliminations (depending on method)",
+            "Four elimination methods: Manual, Clearing Groups, Matching Agent, Network/Elimination Agent",
+            "Supports currency translation (CTA), minority interest (NCI), multi-level hierarchies",
+            "Time to value: Week 2-3 for basic consolidation, Week 3-4 for eliminations"
+          ]
+        },
+        "Matching Agents": {
+          summary: "Automate transaction reconciliation and intercompany matching",
+          details: [
+            "Purpose: Match transactions across different systems and entities for reconciliation",
+            "How it works: AI matches based on amount, date, entity, memo, and custom criteria with confidence scoring",
+            "Key use cases: Intercompany AR/AP matching, bank reconciliations (coming soon), clearing account reconciliations",
+            "Accuracy: 80-95% automatic match rate in production",
+            "Handles complex scenarios: Amount discrepancies, many-to-many matches, cross-currency",
+            "Exception handling: Creates tasks for manual review when confidence is low or discrepancies exist",
+            "ROI timeline: Month 2 typically"
+          ]
+        },
+        "Transaction Patrol Agents": {
+          summary: "Continuously monitor general ledger for anomalies and policy violations",
+          details: [
+            "Purpose: Real-time monitoring of GL transactions for errors and anomalies",
+            "How it works: Predefined agents scan transactions against patterns and rules",
+            "Available agents: Duplicate detector, Outlier detector (unusually large transactions), Trend Variance agent (coming Q4)",
+            "Key use cases: Duplicate detection, unusual activity flagging, missing transaction identification",
+            "Value: Catches issues during the period instead of at month-end, improves data hygiene for faster close",
+            "Integration: Patrol alerts feed into Flux Analysis for better variance explanations",
+            "Status: Currently live with core agents, expanding functionality Q4 2025"
+          ]
+        },
+        "Trigger Agents": {
+          summary: "Automate workflow responses and journal entry creation based on conditions",
+          details: [
+            "Purpose: Execute automated actions when specific GL conditions are met",
+            "How it works: Natural-language-configurable if-then logic that watches GL activity",
+            "Key use cases: Automated journal entries, approval routing, notification workflows, sign-off automation",
+            "Configuration: Users define criteria (accounts, thresholds, metadata) and desired actions",
+            "Value: Eliminates repetitive manual tasks, ensures consistency, reduces human error",
+            "Examples: Auto-create adjustment entries, route exceptions to specific team members, trigger approvals"
+          ]
+        },
+        "Flux Analysis Module": {
+          summary: "AI-powered variance analysis and commentary generation",
+          details: [
+            "Purpose: Automated P&L and Balance Sheet variance analysis with AI commentary",
+            "Current capabilities: Full COA-level analysis, drill to transaction register, regenerate AI commentary, manual editing, export to PDF/CSV",
+            "AI coverage: ~70% of variance commentary automated",
+            "Limitations: Currently single GL at a time (no consolidated flux yet), no filtering by dimension/entity, no threshold-based materiality flags",
+            "Value: Reduces flux analysis time from days to hours",
+            "Roadmap: Consolidated flux, dimension filtering, materiality thresholds coming in future releases"
+          ]
+        },
+        "Close Management Module": {
+          summary: "Task management and workflow for close process",
+          details: [
+            "Purpose: Orchestrate and track the month-end close process",
+            "Features: Task management, segregation of duties, audit trail, notifications, period locking",
+            "Benefits: Visibility into close progress, compliance support, automated workflows",
+            "Limitations: No Gantt charts, basic roles only currently",
+            "Integration: Works with Transaction Patrol and Matching Agents to surface issues",
+            "Enhancement roadmap: Advanced workflow automation Q3 2025"
+          ]
+        }
+      }
+    },
+    useCases: {
+      title: "Common Use Cases & Pain Points",
+      icon: Target,
+      content: {
+        "Month-End Close Automation": {
+          summary: "Accelerating the entire close process from days to hours",
+          details: [
+            "Pain point: Finance teams spending 5-15 days on manual close activities",
+            "Solution: Automates consolidation, eliminations, flux analysis, and task management",
+            "Typical results: Close time reduced by 70% (e.g., 15 days to 5 days)",
+            "Discovery questions: How long does your close take? What are the bottlenecks? How many entities? What's most time-consuming?",
+            "Best fit: Multi-entity organizations with complex consolidation requirements"
+          ]
+        },
+        "Multi-Entity Consolidation": {
+          summary: "Automated financial consolidation across legal entities",
+          details: [
+            "Pain point: Manual Excel-based consolidation across entities with different ERPs",
+            "Solution: Shadow ledger consolidates data automatically with elimination automation",
+            "Common scenarios: Parent-subsidiary rollups, multiple ERPs, different currencies, intercompany elimination",
+            "Typical results: Portfolio reporting in hours vs days, 90% reduction in consolidation time",
+            "Discovery questions: How many entities? Different ERPs? How do you handle intercompany today? What's your current consolidation process?"
+          ]
+        },
+        "Intercompany Reconciliation & Elimination": {
+          summary: "Matching and eliminating transactions between related entities",
+          details: [
+            "Pain point: Manual reconciliation of AR/AP between entities, especially with different ERPs",
+            "Solution: Matching Agents automatically match intercompany transactions, Network Agent creates elimination entries",
+            "Value: Critical for multi-entity organizations, eliminates weeks of manual work",
+            "Typical results: 80-95% automatic match rate, 90% reduction in IC reconciliation time",
+            "Discovery questions: How many intercompany transactions per month? How do you reconcile today? Different ERPs per entity? What are common issues?"
+          ]
+        },
+        "Flux Analysis & Variance Commentary": {
+          summary: "Automated variance analysis with AI-generated explanations",
+          details: [
+            "Pain point: Finance teams spending days drilling into variances and writing commentary",
+            "Solution: AI analyzes account movements and generates commentary, drill to transaction detail available",
+            "Typical results: 70% of commentary automated, variance analysis done in hours not days",
+            "Limitations: Currently single entity at a time, consolidated flux coming soon",
+            "Discovery questions: How do you handle variance analysis today? Who writes the commentary? How long does it take?"
+          ]
+        },
+        "Bank Reconciliations": {
+          summary: "Automated matching of bank transactions to GL entries (Coming Soon)",
+          details: [
+            "Status: Not yet available - on roadmap",
+            "Planned approach: Matching Agents will handle routine bank transaction matching",
+            "Expected value: 95%+ automatic matching rate for standard transactions",
+            "Discovery questions: How many bank accounts? What's your current process? Transaction volume?",
+            "Note: Use other matching use cases (intercompany) as proof points while bank recs are in development"
+          ]
+        },
+        "Data Quality & Transaction Monitoring": {
+          summary: "Proactive detection of GL anomalies and errors",
+          details: [
+            "Pain point: Errors and duplicates discovered during close, causing delays",
+            "Solution: Transaction Patrol agents continuously monitor for duplicates, outliers, and anomalies",
+            "Value: Catch issues in real-time instead of at month-end, cleaner data for faster close",
+            "Current capabilities: Duplicate detection, outlier detection, custom agent configuration",
+            "Discovery questions: How do you ensure data quality? Common errors found during close? Manual review process?"
+          ]
+        }
+      }
+    },
+    buyers: {
+      title: "Buyer Personas & Messaging",
+      icon: Users,
+      content: {
+        "CFO": {
+          summary: "Strategic leader focused on efficiency, accuracy, and team capacity",
+          details: [
+            "Primary concerns: Close speed, team bandwidth, audit readiness, scalability, ROI",
+            "Messaging focus: 70% close time reduction, scale without headcount, strategic vs tactical work",
+            "Key questions they ask: What's the ROI? Implementation time? Risk? Why not just hire more people?",
+            "Value props: 3-6 month payback, free team for strategic work, SOC 1/2 certified, proven with similar companies",
+            "Common objections: Cost, change management risk, implementation complexity",
+            "Proof points: Customer examples with similar entity count, ROI calculator, reference calls"
+          ]
+        },
+        "Controller": {
+          summary: "Operational leader dealing with day-to-day close execution",
+          details: [
+            "Primary concerns: Process efficiency, accuracy, audit trail, maintaining control, detailed execution",
+            "Messaging focus: Eliminate manual work, error reduction, audit compliance, team morale",
+            "Key questions they ask: How does it actually work? Exception handling? Control? Training needs?",
+            "Value props: Automated consolidation and eliminations, complete audit trail, transparency into agent logic, exports to Excel",
+            "Common objections: Loss of control, 'we need to touch the data', integration challenges, team adoption",
+            "Proof points: Demo with their data structure, show agent transparency, SOC 1 certification"
+          ]
+        },
+        "VP Finance / Finance Director": {
+          summary: "Mid-level leader managing specific processes or business units",
+          details: [
+            "Primary concerns: Specific process pain points, team efficiency, career growth, data accuracy",
+            "Messaging focus: Eliminate specific bottlenecks, tactical improvements, professional development",
+            "Key questions they ask: Can it handle our specific workflows? Our team's bandwidth for implementation?",
+            "Value props: Quick wins on painful processes, elevate team from manual to analytical work, skill building",
+            "Common objections: Implementation bandwidth, complexity of current state, resource constraints",
+            "Proof points: Similar use case examples, phased implementation approach, training included"
+          ]
+        },
+        "CAO / Director of Accounting": {
+          summary: "Technical accounting leader focused on accuracy and compliance",
+          details: [
+            "Primary concerns: Technical accounting correctness, audit defensibility, GAAP compliance, documentation",
+            "Messaging focus: Accuracy, audit trail, compliance, technical capabilities",
+            "Key questions they ask: How does it handle complex accounting scenarios? Audit trail? Technical support?",
+            "Value props: Complete audit trail, SOC 1 Type II certified, exports for auditors, technical implementation support",
+            "Common objections: Technical edge cases, complex scenarios, audit acceptance",
+            "Proof points: SOC 1 reports, customer audit success stories, technical deep-dives"
+          ]
+        }
+      }
+    },
+    industries: {
+      title: "Target Industries & Considerations",
+      icon: Briefcase,
+      content: {
+        "Software/SaaS": {
+          summary: "High-growth companies with subscription revenue and multiple entities",
+          details: [
+            "Common pain points: Rapid growth, multi-entity complexity, deferred revenue, multi-currency, international expansion",
+            "Typical tech stack: NetSuite, QuickBooks, Stripe, Salesforce, HubSpot",
+            "Key considerations: Multi-entity from growth/acquisition, revenue complexity, scaling finance team",
+            "Note: We do NOT handle ASC 606 revenue recognition - stay away from this as a selling point",
+            "Qualifying factors: Entity count, growth trajectory, international operations, close time"
+          ]
+        },
+        "Manufacturing": {
+          summary: "Complex inventory, cost accounting, and multi-location operations",
+          details: [
+            "Common pain points: Intercompany inventory transfers, cost allocation, multiple locations, consolidation complexity",
+            "Typical tech stack: NetSuite, SAP, Oracle, Dynamics, QBO",
+            "Key considerations: Inventory valuation, job costing, manufacturing overhead allocation",
+            "Qualifying factors: Number of manufacturing locations, entity structure, ERP landscape"
+          ]
+        },
+        "Professional Services": {
+          summary: "Project-based accounting with multi-entity structures",
+          details: [
+            "Common pain points: Project profitability across entities, time tracking reconciliation, intercompany billing",
+            "Typical tech stack: NetSuite, Unanet, Deltek, Sage Intacct",
+            "Key considerations: Project accounting, utilization tracking, cross-entity project costs",
+            "Qualifying factors: Number of entities, project complexity, billing structure"
+          ]
+        },
+        "Private Equity Portfolio": {
+          summary: "Multiple portfolio companies with centralized reporting requirements",
+          details: [
+            "Common pain points: Different ERPs per portfolio company, inconsistent processes, portfolio-level consolidation",
+            "Typical tech stack: Various - often different systems per portfolio company",
+            "Key considerations: Standardization vs customization, exit readiness, portfolio reporting cadence",
+            "Qualifying factors: Portfolio size, reporting requirements, operational involvement level",
+            "Strong fit: Multi-ERP complexity is exactly what we solve"
+          ]
+        },
+        "Healthcare": {
+          summary: "Regulatory compliance and complex entity structures",
+          details: [
+            "Common pain points: Multiple locations/entities, complex reporting, regulatory compliance",
+            "Typical tech stack: NetSuite, Sage Intacct, specialized healthcare ERPs",
+            "Key considerations: Compliance reporting, location-level consolidation",
+            "Qualifying factors: Number of locations/entities, regulatory reporting requirements"
+          ]
+        },
+        "Retail/E-commerce": {
+          summary: "High transaction volumes and multi-location operations",
+          details: [
+            "Common pain points: Multi-location consolidation, inventory across locations, transaction volume",
+            "Typical tech stack: NetSuite, Shopify, QuickBooks",
+            "Key considerations: Transaction volume handling, location-level reporting, inventory complexity",
+            "Qualifying factors: Number of locations, entity structure, SKU count, transaction volume"
+          ]
+        }
+      }
+    },
+    integrations: {
+      title: "Technical Integration Guide",
+      icon: Code,
+      content: {
+        "Supported ERPs - READ CAREFULLY": {
+          summary: "ERP systems we integrate with - CRITICAL NOTES",
+          details: [
+            "NetSuite: Native API, 1-2 weeks setup, READ-ONLY (write-back on roadmap Q1 2026), custom fields may need mapping",
+            "QuickBooks Online: Native API, <1 week setup, READ-ONLY, class tracking limitations",
+            "Sage Intacct: Native API, 1-2 weeks setup, FULL WRITE-BACK SUPPORTED (only ERP with write-back currently)",
+            "Microsoft Dynamics BC: API (Beta), 2-3 weeks setup, scoped write-back",
+            "Xero: Native API, <1 week setup, READ-ONLY",
+            "Workday Financial: Report Builder workaround, 3-4 weeks, READ-ONLY (testing API approach currently)",
+            "SAP (S/4HANA, ECC): Custom/Agent, 4-6 weeks, READ-ONLY, requires development work",
+            "Oracle Fusion: API/Agent, 4-6 weeks, scoped write-back, requires IT involvement",
+            "SQL Server Direct: Database connection, 2-3 weeks, READ-ONLY, new Q4 2025",
+            "SFTP/File Upload: Manual file uploads, immediate, for any system that can export trial balance/GL data"
+          ]
+        },
+        "CRITICAL INTEGRATION NOTES": {
+          summary: "What you MUST know about our integrations",
+          details: [
+            "We integrate ONLY with ERP systems - not AP/expense/payment/HRIS/CRM systems currently",
+            "Integration is READ-ONLY for all ERPs except Sage Intacct",
+            "NetSuite write-back is on roadmap for Q1 2026 but not available today",
+            "We pull GL data (chart of accounts, trial balance, journal entries, dimensions) via API or SFTP",
+            "No direct integration with Bill.com, Coupa, Stripe, Rippling, HubSpot, Arena PLM, etc.",
+            "Workaround: If systems post to the ERP, we see the data through ERP integration",
+            "For systems that don't post to ERP: SFTP file upload can bring in external data",
+            "Set expectations correctly: We're an ERP layer, not an AP automation or payment system"
+          ]
+        },
+        "Integration Methods": {
+          summary: "How we connect to various systems",
+          details: [
+            "Cloud ERP API: OAuth, native API calls, preferred method for cloud ERPs",
+            "On-premise Agent: Software installed on customer server for on-prem ERPs (e.g., Amtech)",
+            "Direct Database: Read-only database connection for SQL Server based ERPs",
+            "SFTP: Customer uploads files to SFTP location, Nominal retrieves automatically",
+            "Manual File Upload: Excel/CSV upload through UI for any system (backup method)",
+            "Report Builder: For systems like Workday that don't have good APIs",
+            "All methods feed into shadow ledger architecture"
+          ]
+        },
+        "Integration Requirements": {
+          summary: "What we need from customers for integration",
+          details: [
+            "Cloud API: Admin credentials, API access permissions, OAuth consent",
+            "On-premise: IT team involvement, agent installation, server access, firewall configuration",
+            "Database Direct: Read-only DB user, IP whitelisting, network security approval",
+            "SFTP: SFTP credentials, directory structure, file format specifications",
+            "Timeline: Cloud APIs typically 1-2 weeks, on-premise 3-6 weeks depending on IT process",
+            "Discovery questions: What ERP? Cloud or on-premise? IT approval process? Data security requirements?"
+          ]
+        },
+        "Data We Pull from ERPs": {
+          summary: "What financial data we integrate",
+          details: [
+            "Chart of Accounts: Complete COA with account numbers, names, types, hierarchy",
+            "Trial Balance: Account balances by period, multi-period history",
+            "Journal Entries: All posted JEs with transaction details, line items, dimensions",
+            "Dimensions: Department, location, class, project, custom dimensions",
+            "Entities: Subsidiary/entity structure and relationships",
+            "Currency: Multi-currency support with translation rates",
+            "Metadata: Created by, created date, last modified, approval status",
+            "What we DON'T pull: AP invoices, expense reports, payment details (unless needed for specific matching use cases)"
+          ]
+        }
+      }
+    },
+    avoidances: {
+      title: "What NOT to Position",
+      icon: Target,
+      content: {
+        "ASC 606 Revenue Recognition": {
+          summary: "Stay away from revenue recognition as a selling point",
+          details: [
+            "We do NOT automate ASC 606 revenue recognition",
+            "Don't position Nominal as a revenue recognition solution",
+            "If prospect asks: 'We focus on consolidation and close automation. For revenue recognition, we integrate with your existing rev rec tools'",
+            "This is available as an ADD-ON subledger at additional $18K cost but not a core selling point",
+            "Keep conversations focused on consolidation, close, and elimination use cases"
+          ]
+        },
+        "Prepaid Expense Automation": {
+          summary: "Not a current product capability",
+          details: [
+            "Prepaid expense automation is NOT currently available",
+            "Do not use prepaid amortization as a use case example",
+            "May be available as future subledger add-on but not part of core platform today",
+            "If asked: 'That's on our roadmap for subledger automation. Today we focus on consolidation and close.'",
+            "Keep conversations focused on what we have live: consolidation, matching, flux, transaction patrol"
+          ]
+        },
+        "AP/Expense System Integration": {
+          summary: "We don't integrate directly with AP or expense systems",
+          details: [
+            "No direct integration with Bill.com, Coupa, Expensify, Concur, Divvy, Ramp, Brex",
+            "We pull data from the ERP, not from these systems directly",
+            "If these systems post to the ERP, we see the data through ERP integration",
+            "AP invoice matching: Not a current use case (bank recs also not available yet)",
+            "Set correct expectations: We're an ERP consolidation layer, not AP automation",
+            "If asked: 'We integrate at the ERP level. Once transactions hit your GL, we can work with them'"
+          ]
+        },
+        "Corporate Card Reconciliation": {
+          summary: "Not a current product capability",
+          details: [
+            "Corporate card reconciliation is NOT currently available",
+            "Don't use credit card matching as a use case",
+            "Bank reconciliation also not available yet (on roadmap)",
+            "Current matching capabilities: Intercompany AR/AP, clearing accounts",
+            "If asked: 'Bank and card reconciliation are on our roadmap. Today we focus on intercompany matching and consolidation'"
+          ]
+        },
+        "Budgeting & Forecasting": {
+          summary: "Explicitly not in our scope",
+          details: [
+            "We do NOT do budgeting, forecasting, or planning",
+            "Position: We focus on actual financial operations, not FP&A",
+            "If asked: 'We integrate with best-in-class FP&A tools like Adaptive Planning'",
+            "This focus allows us to excel at consolidation and close automation",
+            "Discovery: If they need budgeting, they may not be a fit (or need partner solution)"
+          ]
+        },
+        "Payment Processing Integration": {
+          summary: "Not integrated with payment processors",
+          details: [
+            "No integration with Stripe, PayPal, payment gateways",
+            "No integration with HRIS/payroll systems (Rippling, ADP, Gusto)",
+            "No integration with CRM (Salesforce, HubSpot) for revenue recognition",
+            "We pull GL data from ERP - that's the integration point",
+            "If these systems post to the ERP, data flows through ERP integration"
+          ]
+        }
+      }
+    },
+    sales: {
+      title: "Sales Process & Methodology",
+      icon: MessageSquare,
+      content: {
+        "Qualification Criteria (SPICED)": {
+          summary: "Framework for qualifying opportunities",
+          details: [
+            "Situation: Multi-entity operations (5+ entities ideal), complex consolidation, multiple ERPs, manual Excel processes",
+            "Pain: Close taking 5+ days, manual consolidation, intercompany reconciliation burden, can't scale team, audit issues",
+            "Impact: Delayed reporting, audit findings, team burnout, can't scale with growth, competitive disadvantage",
+            "Critical Event: Upcoming audit, acquisition, entity additions, team turnover, growth inflection point",
+            "Decision Process: Who's involved? Timeline? Budget? Approval process? Other vendors being evaluated?",
+            "Disqualifiers: <5 entities with simple structure, no urgency, no budget, AP automation needs, budgeting/forecasting focus"
+          ]
+        },
+        "Discovery Best Practices": {
+          summary: "How to run effective discovery calls",
+          details: [
+            "Pre-call prep: Review company website, LinkedIn, entity structure, tech stack, recent news",
+            "Start broad: Understand overall finance operations, team structure, close process",
+            "Dig into specifics: Number of entities, ERPs per entity, close timeline, consolidation method",
+            "Map current process: How do you consolidate today? Intercompany reconciliation? Elimination entries?",
+            "Quantify pain: Days on close, hours on consolidation, hours on intercompany, error rates, audit findings",
+            "Understand tech: What ERP(s)? Cloud or on-premise? IT approval process? Data security requirements?",
+            "Identify stakeholders: Who else needs to be involved? Economic buyer? Technical approver?",
+            "Uncover urgency: What's driving this now? Timeline? Upcoming events?"
+          ]
+        },
+        "Demo Approach": {
+          summary: "How to run compelling product demonstrations",
+          details: [
+            "ALWAYS tailor to their specific pain points from discovery",
+            "Use LIVE PRODUCT demonstrations - show actual platform, not slides",
+            "Deck is backup only - lead with live product",
+            "Focus on: Entity structure (if multi-entity), consolidation, eliminations, matching agents, flux analysis",
+            "Show agent transparency: Let them see how agents work, what criteria they use",
+            "Interactive format: Encourage questions, let them explore",
+            "Use their terminology: Their entity names, their accounts, their pain points",
+            "Quantify during demo: 'This would save you X hours' based on discovery",
+            "Best for: Pragmatic buyers who want to see actual capabilities"
+          ]
+        },
+        "POC Guidelines - IMPORTANT": {
+          summary: "When and how to run proof-of-concept engagements",
+          details: [
+            "POC is NOT standard sales practice - only use when necessary",
+            "When to POC: Technical feasibility uncertain, complex scenario, specific use case validation needed",
+            "Never POC for: Unqualified leads, exploratory conversations, standard use cases",
+            "Eligible modules: Matching, Flux, Transaction Patrol (Consolidation only on special request)",
+            "POC requirements: Clear success metrics, defined timeline (typically 2-4 weeks), committed champion",
+            "Data needs: Representative sample data (may require NDA), specific use case scope",
+            "Get commitment: Agree on next steps if POC succeeds BEFORE starting",
+            "Avoid: Using POC as sales motion or for standard capabilities we've proven"
+          ]
+        },
+        "Mid-Market vs Enterprise": {
+          summary: "Different sales motions for different segments",
+          details: [
+            "Mid-Market (5-10 entities): Shorter cycle (1-3 months), single decision-maker, focused on specific pain, $50K-$100K ARR",
+            "Enterprise (10+ entities): Longer cycle (3-6 months), multiple stakeholders, comprehensive evaluation, $150K+ ARR",
+            "Key differences: Decision process, implementation scope, commercial terms, resource requirements",
+            "Don't mix motions: Use different stage definitions and time limits for each",
+            "Discovery question: How many entities? What's your decision process and timeline?"
+          ]
+        },
+        "Pipeline Stage Definitions": {
+          summary: "Clear criteria for moving deals through pipeline",
+          details: [
+            "AE Validation: Initial qualification, uncertain technical feasibility, need more info",
+            "Qualified: SPICED complete, multi-entity confirmed, clear pain, budget exists, decision process understood",
+            "Discovery Complete: Full process mapping, entity structure documented, tech stack confirmed, quantified ROI",
+            "Demo/Technical Validation: Live demo completed, technical feasibility confirmed, champions identified",
+            "Proposal: Scoping complete, proposal delivered, commercial discussions underway",
+            "Negotiation: Terms being finalized, legal review, final approvals pending",
+            "Closed Won: Contract signed, SOW agreed, implementation kickoff scheduled"
+          ]
+        },
+        "Common Objections": {
+          summary: "How to handle typical prospect concerns",
+          details: [
+            "Cost/ROI: '3-6 month payback typical through time savings. Customer X reduced close from 15 to 5 days'",
+            "Implementation complexity: '4-9 weeks standard. Shadow ledger means no data migration or ERP changes'",
+            "Change management: 'Finance teams love eliminating manual work. 95% adoption rate. They keep their ERP, just automate around it'",
+            "Loss of control: 'Complete transparency into agent logic. You maintain full control. Audit trail for everything'",
+            "Integration concerns: 'Read-only API integration. Works alongside your ERP. No rip and replace'",
+            "Write-back limitations: 'Sage Intacct has write-back today. NetSuite coming Q1 2026. Export capability available for all'",
+            "Security: 'SOC 1 & SOC 2 Type II certified. Read-only access. Enterprise-grade security'"
+          ]
+        },
+        "Key Discovery Questions": {
+          summary: "Essential questions to ask during qualification",
+          details: [
+            "Entity structure: How many legal entities? Parent-sub relationships? Different ERPs?",
+            "Close process: How long does close take? What are biggest bottlenecks? How many people involved?",
+            "Consolidation: How do you consolidate today? Excel? Manual? Other tools? Time spent?",
+            "Intercompany: Volume of IC transactions? How do you reconcile? Elimination entries? Issues?",
+            "Tech stack: What ERP(s)? Cloud or on-premise? IT approval process for integrations?",
+            "Pain quantification: Hours on consolidation? Hours on IC reconciliation? Audit findings? Errors?",
+            "Team capacity: Size of team? Hiring plans? What do they spend time on?",
+            "Growth: Acquiring companies? Adding entities? International expansion?",
+            "Decision process: Who evaluates? Timeline? Budget? Other vendors considered?"
+          ]
+        }
+      }
+    },
+    modules: {
+      title: "Current Product Modules & Status",
+      icon: Code,
+      content: {
+        "Consolidation (LIVE)": {
+          summary: "Core multi-entity consolidation - our primary value prop",
+          details: [
+            "Status: Live and production-ready",
+            "Features: Entity hierarchy, COA mapping, multi-currency (CTA), minority interest (NCI), journal entries",
+            "Automation: 95% for consolidation rollup",
+            "Limitations: No visual org chart, no bulk mapping updates yet",
+            "Time to value: Week 2-3 for basic consolidation",
+            "This is what we lead with - our strongest capability"
+          ]
+        },
+        "Intercompany Elimination (LIVE)": {
+          summary: "Four methods for eliminating intercompany transactions",
+          details: [
+            "Status: Live with multiple methods",
+            "Methods: 1) Manual elimination entries, 2) Clearing Groups, 3) Matching Agent, 4) Network/Elimination Agent",
+            "Automation: 70-90% depending on method (Matching Agent highest automation)",
+            "Features: Define clearing groups, matching rules, automated JE creation",
+            "Limitations: No cross-entity logic beyond direct matches (yet)",
+            "Time to value: Week 3-4 for elimination setup"
+          ]
+        },
+        "Matching Agents (LIVE)": {
+          summary: "Transaction matching for intercompany and reconciliation",
+          details: [
+            "Status: Live for intercompany matching",
+            "Current use cases: Intercompany AR/AP matching, clearing account reconciliation",
+            "Accuracy: 80-95% auto-match rate in production",
+            "Features: AI matching with confidence scores, discrepancy handling, task creation for exceptions",
+            "Limitations: Bank/card reconciliation not yet available",
+            "Roadmap: Bank reconciliation coming in future release",
+            "Lead with: Intercompany matching use cases"
+          ]
+        },
+        "Transaction Patrol (LIVE)": {
+          summary: "GL monitoring for duplicates and anomalies",
+          details: [
+            "Status: Live with core agents",
+            "Available agents: Duplicate detector, Outlier detector (unusually large transactions)",
+            "Coming Q4 2025: Trend Variance agent, Custom agent builder",
+            "Value: Proactive issue detection, cleaner data for faster close",
+            "Integration: Alerts feed into Flux Analysis",
+            "Limitations: Currently predefined agents only, custom agents coming soon"
+          ]
+        },
+        "Flux Analysis (LIVE - Limited)": {
+          summary: "Variance analysis with AI commentary",
+          details: [
+            "Status: Live but with limitations",
+            "Features: COA-level P&L and BS analysis, drill to register, AI commentary generation, manual editing, PDF/CSV export",
+            "Limitations: Single GL at a time (no consolidated flux), no dimension filtering, no materiality thresholds",
+            "Automation: ~70% of variance commentary automated",
+            "Roadmap: Consolidated flux, dimension filtering, materiality flags in future",
+            "Position as: Great for entity-level analysis, consolidated coming soon"
+          ]
+        },
+        "Close Management (LIVE)": {
+          summary: "Task management and close workflow",
+          details: [
+            "Status: Live",
+            "Features: Task management, workflow automation, segregation of duties, audit trail, notifications, period locking",
+            "Limitations: No Gantt charts, basic permissions only",
+            "Value: Visibility into close progress, compliance support",
+            "Enhancement: Advanced workflow automation coming Q3 2025"
+          ]
+        },
+        "Trigger Agents (LIVE)": {
+          summary: "Automated actions based on GL conditions",
+          details: [
+            "Status: Live",
+            "Use cases: Automated JE creation, approval routing, notification workflows, sign-off automation",
+            "Configuration: Natural language setup of if-then rules",
+            "Value: Eliminate repetitive tasks, ensure consistency",
+            "Examples: Auto-create elimination JEs after matches signed off"
+          ]
+        },
+        "Bank/Card Reconciliation (ROADMAP)": {
+          summary: "NOT currently available - on roadmap",
+          details: [
+            "Status: Not available - future roadmap item",
+            "Do NOT position as current capability",
+            "If asked: 'That's on our roadmap. Today we focus on intercompany matching and consolidation'",
+            "Use intercompany matching as proof point for matching capabilities",
+            "Timeline: TBD - not committed"
+          ]
+        },
+        "Subledgers - Prepaid, Rev Rec, Leases (ADD-ON)": {
+          summary: "Available as add-on, not core platform",
+          details: [
+            "Status: Available as separate subledger modules at additional cost",
+            "Modules: Prepaid expenses, ASC 606 revenue recognition, ASC 842 lease accounting",
+            "Pricing: Additional $18K per subledger module",
+            "NOT part of core platform or standard sales motion",
+            "Do not lead with these - focus on consolidation and close"
+          ]
+        }
+      }
+    }
+  };
+
+  const filteredContent = () => {
+    if (!searchTerm) return knowledgeBase;
+    
+    const filtered = {};
+    Object.keys(knowledgeBase).forEach(tabKey => {
+      const tab = knowledgeBase[tabKey];
+      const matchedContent = {};
+      
+      Object.keys(tab.content).forEach(sectionKey => {
+        const section = tab.content[sectionKey];
+        const searchLower = searchTerm.toLowerCase();
+        
+        if (
+          sectionKey.toLowerCase().includes(searchLower) ||
+          section.summary.toLowerCase().includes(searchLower) ||
+          section.details.some(detail => detail.toLowerCase().includes(searchLower))
+        ) {
+          matchedContent[sectionKey] = section;
+        }
+      });
+      
+      if (Object.keys(matchedContent).length > 0) {
+        filtered[tabKey] = { ...tab, content: matchedContent };
+      }
+    });
+    
+    return filtered;
+  };
+
+  const tabs = [
+    { id: 'overview', label: 'Overview', icon: BookOpen },
+    { id: 'agents', label: 'Agents & Modules', icon: Zap },
+    { id: 'modules', label: 'Module Status', icon: Code },
+    { id: 'useCases', label: 'Use Cases', icon: Target },
+    { id: 'buyers', label: 'Buyers', icon: Users },
+    { id: 'industries', label: 'Industries', icon: Briefcase },
+    { id: 'integrations', label: 'Integrations', icon: Code },
+    { id: 'avoidances', label: 'What NOT to Sell', icon: Target },
+    { id: 'sales', label: 'Sales Process', icon: MessageSquare }
+  ];
+
+  const content = filteredContent();
+  const activeContent = content[activeTab];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      <div className="max-w-7xl mx-auto p-6">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-slate-900 mb-2">Nominal Product Knowledge Base</h1>
+          <p className="text-slate-600 text-lg">Complete product knowledge for Account Executives - Updated with accurate product capabilities</p>
+        </div>
+
+        {/* Search */}
+        <div className="mb-6 relative">
+          <Search className="absolute left-4 top-3.5 text-slate-400" size={20} />
+          <input
+            type="text"
+            placeholder="Search knowledge base..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-12 pr-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white shadow-sm"
+          />
+        </div>
+
+        {/* Tabs */}
+        <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+          {tabs.map(tab => {
+            const Icon = tab.icon;
+            const isVisible = content[tab.id];
+            if (!isVisible && searchTerm) return null;
+            
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-colors ${
+                  activeTab === tab.id
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'bg-white text-slate-700 hover:bg-slate-100'
+                }`}
+              >
+                <Icon size={18} />
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Content */}
+        {activeContent ? (
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-200">
+              {React.createElement(activeContent.icon, { size: 28, className: "text-blue-600" })}
+              <h2 className="text-3xl font-bold text-slate-900">{activeContent.title}</h2>
+            </div>
+
+            <div className="space-y-4">
+              {Object.entries(activeContent.content).map(([key, section]) => (
+                <div key={key} className="border border-slate-200 rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleSection(key)}
+                    className="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 transition-colors"
+                  >
+                    <div className="flex-1 text-left">
+                      <h3 className="text-lg font-semibold text-slate-900 mb-1">{key}</h3>
+                      <p className="text-sm text-slate-600">{section.summary}</p>
+                    </div>
+                    {expandedSections[key] ? (
+                      <ChevronDown className="text-slate-400 flex-shrink-0 ml-4" size={20} />
+                    ) : (
+                      <ChevronRight className="text-slate-400 flex-shrink-0 ml-4" size={20} />
+                    )}
+                  </button>
+                  
+                  {expandedSections[key] && (
+                    <div className="p-6 bg-white border-t border-slate-200">
+                      <ul className="space-y-3">
+                        {section.details.map((detail, idx) => (
+                          <li key={idx} className="flex gap-3">
+                            <span className="text-blue-600 mt-1 flex-shrink-0">•</span>
+                            <span className="text-slate-700 leading-relaxed">{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="bg-white rounded-xl shadow-lg p-12 text-center">
+            <Search className="mx-auto mb-4 text-slate-300" size={48} />
+            <p className="text-slate-600 text-lg">No results found for "{searchTerm}"</p>
+            <p className="text-slate-500 mt-2">Try a different search term</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default NominalKnowledgeBase;
