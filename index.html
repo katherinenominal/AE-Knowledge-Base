@@ -7,7 +7,6 @@
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -31,7 +30,7 @@
           const knowledgeBase = {
             overview: {
               title: "Platform Overview",
-              icon: "BookOpen",
+              icon: "📖",
               content: {
                 "What Nominal Does": {
                   summary: "AI-powered finance automation platform that eliminates manual work in month-end close, reconciliation, and variance analysis",
@@ -82,7 +81,7 @@
             },
             agents: {
               title: "AI Agent Types & Modules",
-              icon: "Zap",
+              icon: "⚡",
               content: {
                 "Consolidation Module": {
                   summary: "Core multi-entity consolidation with automated eliminations",
@@ -156,7 +155,7 @@
             },
             useCases: {
               title: "Common Use Cases & Pain Points",
-              icon: "Target",
+              icon: "🎯",
               content: {
                 "Month-End Close Automation": {
                   summary: "Accelerating the entire close process from days to hours",
@@ -222,7 +221,7 @@
             },
             buyers: {
               title: "Buyer Personas & Messaging",
-              icon: "Users",
+              icon: "👥",
               content: {
                 "CFO": {
                   summary: "Strategic leader focused on efficiency, accuracy, and team capacity",
@@ -272,7 +271,7 @@
             },
             industries: {
               title: "Target Industries & Considerations",
-              icon: "Briefcase",
+              icon: "💼",
               content: {
                 "Software/SaaS": {
                   summary: "High-growth companies with subscription revenue and multiple entities",
@@ -334,7 +333,7 @@
             },
             integrations: {
               title: "Technical Integration Guide",
-              icon: "Code",
+              icon: "💻",
               content: {
                 "Supported ERPs - READ CAREFULLY": {
                   summary: "ERP systems we integrate with - CRITICAL NOTES",
@@ -404,7 +403,7 @@
             },
             avoidances: {
               title: "What NOT to Position",
-              icon: "Target",
+              icon: "⚠️",
               content: {
                 "ASC 606 Revenue Recognition": {
                   summary: "Stay away from revenue recognition as a selling point",
@@ -471,7 +470,7 @@
             },
             sales: {
               title: "Sales Process & Methodology",
-              icon: "MessageSquare",
+              icon: "💬",
               content: {
                 "Qualification Criteria (SPICED)": {
                   summary: "Framework for qualifying opportunities",
@@ -576,7 +575,7 @@
             },
             modules: {
               title: "Current Product Modules & Status",
-              icon: "Code",
+              icon: "💻",
               content: {
                 "Consolidation (LIVE)": {
                   summary: "Core multi-entity consolidation - our primary value prop",
@@ -678,12 +677,6 @@
             }
           };
 
-          const Icon = ({ name, size = 20, className = "" }) => {
-            const IconComponent = lucide[name];
-            if (!IconComponent) return null;
-            return React.createElement(IconComponent, { size, className });
-          };
-
           const filteredContent = () => {
             if (!searchTerm) return knowledgeBase;
             
@@ -714,15 +707,15 @@
           };
 
           const tabs = [
-            { id: 'overview', label: 'Overview', icon: 'BookOpen' },
-            { id: 'agents', label: 'Agents & Modules', icon: 'Zap' },
-            { id: 'modules', label: 'Module Status', icon: 'Code' },
-            { id: 'useCases', label: 'Use Cases', icon: 'Target' },
-            { id: 'buyers', label: 'Buyers', icon: 'Users' },
-            { id: 'industries', label: 'Industries', icon: 'Briefcase' },
-            { id: 'integrations', label: 'Integrations', icon: 'Code' },
-            { id: 'avoidances', label: 'What NOT to Sell', icon: 'Target' },
-            { id: 'sales', label: 'Sales Process', icon: 'MessageSquare' }
+            { id: 'overview', label: 'Overview', icon: '📖' },
+            { id: 'agents', label: 'Agents & Modules', icon: '⚡' },
+            { id: 'modules', label: 'Module Status', icon: '💻' },
+            { id: 'useCases', label: 'Use Cases', icon: '🎯' },
+            { id: 'buyers', label: 'Buyers', icon: '👥' },
+            { id: 'industries', label: 'Industries', icon: '💼' },
+            { id: 'integrations', label: 'Integrations', icon: '💻' },
+            { id: 'avoidances', label: 'What NOT to Sell', icon: '⚠️' },
+            { id: 'sales', label: 'Sales Process', icon: '💬' }
           ];
 
           const content = filteredContent();
@@ -737,7 +730,7 @@
                 </div>
 
                 <div className="mb-6 relative">
-                  <Icon name="Search" size={20} className="absolute left-4 top-3.5 text-slate-400" />
+                  <span className="absolute left-4 top-3.5 text-slate-400">🔍</span>
                   <input
                     type="text"
                     placeholder="Search knowledge base..."
@@ -762,7 +755,7 @@
                             : 'bg-white text-slate-700 hover:bg-slate-100'
                         }`}
                       >
-                        <Icon name={tab.icon} size={18} />
+                        <span>{tab.icon}</span>
                         {tab.label}
                       </button>
                     );
@@ -772,7 +765,7 @@
                 {activeContent ? (
                   <div className="bg-white rounded-xl shadow-lg p-8">
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-200">
-                      <Icon name={activeContent.icon} size={28} className="text-blue-600" />
+                      <span className="text-3xl">{activeContent.icon}</span>
                       <h2 className="text-3xl font-bold text-slate-900">{activeContent.title}</h2>
                     </div>
 
@@ -787,11 +780,9 @@
                               <h3 className="text-lg font-semibold text-slate-900 mb-1">{key}</h3>
                               <p className="text-sm text-slate-600">{section.summary}</p>
                             </div>
-                            {expandedSections[key] ? (
-                              <Icon name="ChevronDown" size={20} className="text-slate-400 flex-shrink-0 ml-4" />
-                            ) : (
-                              <Icon name="ChevronRight" size={20} className="text-slate-400 flex-shrink-0 ml-4" />
-                            )}
+                            <span className="text-slate-400 flex-shrink-0 ml-4 text-xl">
+                              {expandedSections[key] ? '▼' : '▶'}
+                            </span>
                           </button>
                           
                           {expandedSections[key] && (
@@ -812,7 +803,7 @@
                   </div>
                 ) : (
                   <div className="bg-white rounded-xl shadow-lg p-12 text-center">
-                    <Icon name="Search" size={48} className="mx-auto mb-4 text-slate-300" />
+                    <span className="text-6xl mb-4 block">🔍</span>
                     <p className="text-slate-600 text-lg">No results found for "{searchTerm}"</p>
                     <p className="text-slate-500 mt-2">Try a different search term</p>
                   </div>
