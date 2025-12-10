@@ -1,0 +1,844 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.3">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Nominal Product Knowledge Base&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="root"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script type="text/babel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const { useState } = React;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const NominalKnowledgeBase = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [searchTerm, setSearchTerm] = useState('');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [expandedSections, setExpandedSections] = useState({});</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [activeTab, setActiveTab] = useState('overview');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const toggleSection = (section) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setExpandedSections(prev =&gt; ({</p>
+<p class="p1"><span class="Apple-converted-space">              </span>...prev,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>[section]: !prev[section]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}));</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const knowledgeBase = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overview: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: "Platform Overview",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>icon: "BookOpen",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>content: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"What Nominal Does": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "AI-powered finance automation platform that eliminates manual work in month-end close, reconciliation, and variance analysis",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Automates finance and accounting processes through AI agents",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Focuses on month-end close, consolidation, and variance analysis",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Built on 'shadow ledger' architecture - integrates with ERPs without migration",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Serves CFOs and finance teams dealing with complex multi-entity operations",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Primary value: 70% reduction in close time through automated intercompany matching, intelligent variance analysis, and seamless multi-entity consolidation"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Shadow Ledger Architecture": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Core technical approach that enables multi-ERP integration without data migration",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Creates a unified view across multiple ERP systems by replicating GL data",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"No need to migrate existing data or change current systems - we sit alongside",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Maintains data integrity while providing centralized automation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Enables cross-entity reconciliation and consolidation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Read-only integration for most ERPs (Sage Intacct supports write-back)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Data synced via API, SFTP, or direct database connection"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Primary Value Propositions": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Key benefits that resonate with finance leaders",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Reduces month-end close time by 70% on average",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Automates ~70% of flux analysis and transaction matching",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Eliminates manual consolidation and reconciliation work",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Provides real-time visibility into financial operations",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Scales with organizational complexity without adding headcount",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"SOC 1 &amp; SOC 2 Type II certified for enterprise security",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"4-9 week implementation (faster than traditional solutions)"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Ideal Customer Profile": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Best fit organizations for Nominal",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Multi-entity organizations (5+ entities is the sweet spot)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Companies with complex intercompany transactions",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Organizations using multiple ERPs across entities",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Finance teams spending 5-10 days on month-end close",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Companies experiencing growth and can't scale finance headcount proportionally",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Public companies or those with stringent audit requirements",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Middle-market to enterprise ($50M+ revenue typical)"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>agents: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: "AI Agent Types &amp; Modules",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>icon: "Zap",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>content: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Consolidation Module": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Core multi-entity consolidation with automated eliminations",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Purpose: Consolidate financials across multiple legal entities with different ERPs",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key features: Entity structure management, chart of accounts mapping, intercompany elimination rules",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Automation level: 95% for consolidation rollup, 70-90% for eliminations (depending on method)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Four elimination methods: Manual, Clearing Groups, Matching Agent, Network/Elimination Agent",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Supports currency translation (CTA), minority interest (NCI), multi-level hierarchies",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Time to value: Week 2-3 for basic consolidation, Week 3-4 for eliminations"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Matching Agents": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Automate transaction reconciliation and intercompany matching",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Purpose: Match transactions across different systems and entities for reconciliation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"How it works: AI matches based on amount, date, entity, memo, and custom criteria with confidence scoring",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key use cases: Intercompany AR/AP matching, bank reconciliations (coming soon), clearing account reconciliations",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Accuracy: 80-95% automatic match rate in production",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Handles complex scenarios: Amount discrepancies, many-to-many matches, cross-currency",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Exception handling: Creates tasks for manual review when confidence is low or discrepancies exist",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"ROI timeline: Month 2 typically"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Transaction Patrol Agents": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Continuously monitor general ledger for anomalies and policy violations",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Purpose: Real-time monitoring of GL transactions for errors and anomalies",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"How it works: Predefined agents scan transactions against patterns and rules",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Available agents: Duplicate detector, Outlier detector (unusually large transactions), Trend Variance agent (coming Q4)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key use cases: Duplicate detection, unusual activity flagging, missing transaction identification",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Value: Catches issues during the period instead of at month-end, improves data hygiene for faster close",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Integration: Patrol alerts feed into Flux Analysis for better variance explanations",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Status: Currently live with core agents, expanding functionality Q4 2025"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Trigger Agents": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Automate workflow responses and journal entry creation based on conditions",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Purpose: Execute automated actions when specific GL conditions are met",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"How it works: Natural-language-configurable if-then logic that watches GL activity",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key use cases: Automated journal entries, approval routing, notification workflows, sign-off automation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Configuration: Users define criteria (accounts, thresholds, metadata) and desired actions",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Value: Eliminates repetitive manual tasks, ensures consistency, reduces human error",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Examples: Auto-create adjustment entries, route exceptions to specific team members, trigger approvals"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Flux Analysis Module": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "AI-powered variance analysis and commentary generation",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Purpose: Automated P&amp;L and Balance Sheet variance analysis with AI commentary",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Current capabilities: Full COA-level analysis, drill to transaction register, regenerate AI commentary, manual editing, export to PDF/CSV",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"AI coverage: ~70% of variance commentary automated",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Limitations: Currently single GL at a time (no consolidated flux yet), no filtering by dimension/entity, no threshold-based materiality flags",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Value: Reduces flux analysis time from days to hours",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Roadmap: Consolidated flux, dimension filtering, materiality thresholds coming in future releases"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Close Management Module": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Task management and workflow for close process",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Purpose: Orchestrate and track the month-end close process",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Features: Task management, segregation of duties, audit trail, notifications, period locking",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Benefits: Visibility into close progress, compliance support, automated workflows",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Limitations: No Gantt charts, basic roles only currently",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Integration: Works with Transaction Patrol and Matching Agents to surface issues",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Enhancement roadmap: Advanced workflow automation Q3 2025"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>useCases: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: "Common Use Cases &amp; Pain Points",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>icon: "Target",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>content: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Month-End Close Automation": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Accelerating the entire close process from days to hours",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Pain point: Finance teams spending 5-15 days on manual close activities",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Solution: Automates consolidation, eliminations, flux analysis, and task management",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Typical results: Close time reduced by 70% (e.g., 15 days to 5 days)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Discovery questions: How long does your close take? What are the bottlenecks? How many entities? What's most time-consuming?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Best fit: Multi-entity organizations with complex consolidation requirements"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Multi-Entity Consolidation": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Automated financial consolidation across legal entities",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Pain point: Manual Excel-based consolidation across entities with different ERPs",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Solution: Shadow ledger consolidates data automatically with elimination automation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Common scenarios: Parent-subsidiary rollups, multiple ERPs, different currencies, intercompany elimination",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Typical results: Portfolio reporting in hours vs days, 90% reduction in consolidation time",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Discovery questions: How many entities? Different ERPs? How do you handle intercompany today? What's your current consolidation process?"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Intercompany Reconciliation &amp; Elimination": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Matching and eliminating transactions between related entities",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Pain point: Manual reconciliation of AR/AP between entities, especially with different ERPs",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Solution: Matching Agents automatically match intercompany transactions, Network Agent creates elimination entries",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Value: Critical for multi-entity organizations, eliminates weeks of manual work",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Typical results: 80-95% automatic match rate, 90% reduction in IC reconciliation time",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Discovery questions: How many intercompany transactions per month? How do you reconcile today? Different ERPs per entity? What are common issues?"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Flux Analysis &amp; Variance Commentary": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Automated variance analysis with AI-generated explanations",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Pain point: Finance teams spending days drilling into variances and writing commentary",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Solution: AI analyzes account movements and generates commentary, drill to transaction detail available",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Typical results: 70% of commentary automated, variance analysis done in hours not days",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Limitations: Currently single entity at a time, consolidated flux coming soon",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Discovery questions: How do you handle variance analysis today? Who writes the commentary? How long does it take?"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Bank Reconciliations": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Automated matching of bank transactions to GL entries (Coming Soon)",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Status: Not yet available - on roadmap",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Planned approach: Matching Agents will handle routine bank transaction matching",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Expected value: 95%+ automatic matching rate for standard transactions",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Discovery questions: How many bank accounts? What's your current process? Transaction volume?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Note: Use other matching use cases (intercompany) as proof points while bank recs are in development"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Data Quality &amp; Transaction Monitoring": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Proactive detection of GL anomalies and errors",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Pain point: Errors and duplicates discovered during close, causing delays",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Solution: Transaction Patrol agents continuously monitor for duplicates, outliers, and anomalies",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Value: Catch issues in real-time instead of at month-end, cleaner data for faster close",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Current capabilities: Duplicate detection, outlier detection, custom agent configuration",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Discovery questions: How do you ensure data quality? Common errors found during close? Manual review process?"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>buyers: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: "Buyer Personas &amp; Messaging",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>icon: "Users",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>content: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"CFO": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Strategic leader focused on efficiency, accuracy, and team capacity",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Primary concerns: Close speed, team bandwidth, audit readiness, scalability, ROI",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Messaging focus: 70% close time reduction, scale without headcount, strategic vs tactical work",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key questions they ask: What's the ROI? Implementation time? Risk? Why not just hire more people?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Value props: 3-6 month payback, free team for strategic work, SOC 1/2 certified, proven with similar companies",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Common objections: Cost, change management risk, implementation complexity",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Proof points: Customer examples with similar entity count, ROI calculator, reference calls"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Controller": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Operational leader dealing with day-to-day close execution",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Primary concerns: Process efficiency, accuracy, audit trail, maintaining control, detailed execution",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Messaging focus: Eliminate manual work, error reduction, audit compliance, team morale",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key questions they ask: How does it actually work? Exception handling? Control? Training needs?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Value props: Automated consolidation and eliminations, complete audit trail, transparency into agent logic, exports to Excel",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Common objections: Loss of control, 'we need to touch the data', integration challenges, team adoption",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Proof points: Demo with their data structure, show agent transparency, SOC 1 certification"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"VP Finance / Finance Director": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Mid-level leader managing specific processes or business units",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Primary concerns: Specific process pain points, team efficiency, career growth, data accuracy",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Messaging focus: Eliminate specific bottlenecks, tactical improvements, professional development",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key questions they ask: Can it handle our specific workflows? Our team's bandwidth for implementation?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Value props: Quick wins on painful processes, elevate team from manual to analytical work, skill building",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Common objections: Implementation bandwidth, complexity of current state, resource constraints",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Proof points: Similar use case examples, phased implementation approach, training included"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"CAO / Director of Accounting": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Technical accounting leader focused on accuracy and compliance",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Primary concerns: Technical accounting correctness, audit defensibility, GAAP compliance, documentation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Messaging focus: Accuracy, audit trail, compliance, technical capabilities",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key questions they ask: How does it handle complex accounting scenarios? Audit trail? Technical support?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Value props: Complete audit trail, SOC 1 Type II certified, exports for auditors, technical implementation support",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Common objections: Technical edge cases, complex scenarios, audit acceptance",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Proof points: SOC 1 reports, customer audit success stories, technical deep-dives"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>industries: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: "Target Industries &amp; Considerations",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>icon: "Briefcase",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>content: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Software/SaaS": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "High-growth companies with subscription revenue and multiple entities",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Common pain points: Rapid growth, multi-entity complexity, deferred revenue, multi-currency, international expansion",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Typical tech stack: NetSuite, QuickBooks, Stripe, Salesforce, HubSpot",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key considerations: Multi-entity from growth/acquisition, revenue complexity, scaling finance team",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Note: We do NOT handle ASC 606 revenue recognition - stay away from this as a selling point",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Qualifying factors: Entity count, growth trajectory, international operations, close time"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Manufacturing": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Complex inventory, cost accounting, and multi-location operations",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Common pain points: Intercompany inventory transfers, cost allocation, multiple locations, consolidation complexity",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Typical tech stack: NetSuite, SAP, Oracle, Dynamics, QBO",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key considerations: Inventory valuation, job costing, manufacturing overhead allocation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Qualifying factors: Number of manufacturing locations, entity structure, ERP landscape"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Professional Services": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Project-based accounting with multi-entity structures",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Common pain points: Project profitability across entities, time tracking reconciliation, intercompany billing",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Typical tech stack: NetSuite, Unanet, Deltek, Sage Intacct",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key considerations: Project accounting, utilization tracking, cross-entity project costs",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Qualifying factors: Number of entities, project complexity, billing structure"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Private Equity Portfolio": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Multiple portfolio companies with centralized reporting requirements",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Common pain points: Different ERPs per portfolio company, inconsistent processes, portfolio-level consolidation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Typical tech stack: Various - often different systems per portfolio company",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key considerations: Standardization vs customization, exit readiness, portfolio reporting cadence",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Qualifying factors: Portfolio size, reporting requirements, operational involvement level",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Strong fit: Multi-ERP complexity is exactly what we solve"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Healthcare": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Regulatory compliance and complex entity structures",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Common pain points: Multiple locations/entities, complex reporting, regulatory compliance",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Typical tech stack: NetSuite, Sage Intacct, specialized healthcare ERPs",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key considerations: Compliance reporting, location-level consolidation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Qualifying factors: Number of locations/entities, regulatory reporting requirements"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Retail/E-commerce": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "High transaction volumes and multi-location operations",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Common pain points: Multi-location consolidation, inventory across locations, transaction volume",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Typical tech stack: NetSuite, Shopify, QuickBooks",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key considerations: Transaction volume handling, location-level reporting, inventory complexity",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Qualifying factors: Number of locations, entity structure, SKU count, transaction volume"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>integrations: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: "Technical Integration Guide",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>icon: "Code",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>content: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Supported ERPs - READ CAREFULLY": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "ERP systems we integrate with - CRITICAL NOTES",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"NetSuite: Native API, 1-2 weeks setup, READ-ONLY (write-back on roadmap Q1 2026), custom fields may need mapping",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"QuickBooks Online: Native API, &lt;1 week setup, READ-ONLY, class tracking limitations",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Sage Intacct: Native API, 1-2 weeks setup, FULL WRITE-BACK SUPPORTED (only ERP with write-back currently)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Microsoft Dynamics BC: API (Beta), 2-3 weeks setup, scoped write-back",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Xero: Native API, &lt;1 week setup, READ-ONLY",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Workday Financial: Report Builder workaround, 3-4 weeks, READ-ONLY (testing API approach currently)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"SAP (S/4HANA, ECC): Custom/Agent, 4-6 weeks, READ-ONLY, requires development work",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Oracle Fusion: API/Agent, 4-6 weeks, scoped write-back, requires IT involvement",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"SQL Server Direct: Database connection, 2-3 weeks, READ-ONLY, new Q4 2025",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"SFTP/File Upload: Manual file uploads, immediate, for any system that can export trial balance/GL data"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"CRITICAL INTEGRATION NOTES": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "What you MUST know about our integrations",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"We integrate ONLY with ERP systems - not AP/expense/payment/HRIS/CRM systems currently",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Integration is READ-ONLY for all ERPs except Sage Intacct",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"NetSuite write-back is on roadmap for Q1 2026 but not available today",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"We pull GL data (chart of accounts, trial balance, journal entries, dimensions) via API or SFTP",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"No direct integration with Bill.com, Coupa, Stripe, Rippling, HubSpot, Arena PLM, etc.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Workaround: If systems post to the ERP, we see the data through ERP integration",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"For systems that don't post to ERP: SFTP file upload can bring in external data",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Set expectations correctly: We're an ERP layer, not an AP automation or payment system"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Integration Methods": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "How we connect to various systems",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Cloud ERP API: OAuth, native API calls, preferred method for cloud ERPs",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"On-premise Agent: Software installed on customer server for on-prem ERPs (e.g., Amtech)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Direct Database: Read-only database connection for SQL Server based ERPs",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"SFTP: Customer uploads files to SFTP location, Nominal retrieves automatically",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Manual File Upload: Excel/CSV upload through UI for any system (backup method)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Report Builder: For systems like Workday that don't have good APIs",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"All methods feed into shadow ledger architecture"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Integration Requirements": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "What we need from customers for integration",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Cloud API: Admin credentials, API access permissions, OAuth consent",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"On-premise: IT team involvement, agent installation, server access, firewall configuration",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Database Direct: Read-only DB user, IP whitelisting, network security approval",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"SFTP: SFTP credentials, directory structure, file format specifications",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Timeline: Cloud APIs typically 1-2 weeks, on-premise 3-6 weeks depending on IT process",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Discovery questions: What ERP? Cloud or on-premise? IT approval process? Data security requirements?"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Data We Pull from ERPs": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "What financial data we integrate",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Chart of Accounts: Complete COA with account numbers, names, types, hierarchy",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Trial Balance: Account balances by period, multi-period history",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Journal Entries: All posted JEs with transaction details, line items, dimensions",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Dimensions: Department, location, class, project, custom dimensions",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Entities: Subsidiary/entity structure and relationships",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Currency: Multi-currency support with translation rates",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Metadata: Created by, created date, last modified, approval status",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"What we DON'T pull: AP invoices, expense reports, payment details (unless needed for specific matching use cases)"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>avoidances: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: "What NOT to Position",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>icon: "Target",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>content: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"ASC 606 Revenue Recognition": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Stay away from revenue recognition as a selling point",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"We do NOT automate ASC 606 revenue recognition",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Don't position Nominal as a revenue recognition solution",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"If prospect asks: 'We focus on consolidation and close automation. For revenue recognition, we integrate with your existing rev rec tools'",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"This is available as an ADD-ON subledger at additional $18K cost but not a core selling point",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Keep conversations focused on consolidation, close, and elimination use cases"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Prepaid Expense Automation": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Not a current product capability",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Prepaid expense automation is NOT currently available",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Do not use prepaid amortization as a use case example",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"May be available as future subledger add-on but not part of core platform today",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"If asked: 'That's on our roadmap for subledger automation. Today we focus on consolidation and close.'",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Keep conversations focused on what we have live: consolidation, matching, flux, transaction patrol"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"AP/Expense System Integration": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "We don't integrate directly with AP or expense systems",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"No direct integration with Bill.com, Coupa, Expensify, Concur, Divvy, Ramp, Brex",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"We pull data from the ERP, not from these systems directly",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"If these systems post to the ERP, we see the data through ERP integration",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"AP invoice matching: Not a current use case (bank recs also not available yet)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Set correct expectations: We're an ERP consolidation layer, not AP automation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"If asked: 'We integrate at the ERP level. Once transactions hit your GL, we can work with them'"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Corporate Card Reconciliation": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Not a current product capability",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Corporate card reconciliation is NOT currently available",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Don't use credit card matching as a use case",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Bank reconciliation also not available yet (on roadmap)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Current matching capabilities: Intercompany AR/AP, clearing accounts",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"If asked: 'Bank and card reconciliation are on our roadmap. Today we focus on intercompany matching and consolidation'"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Budgeting &amp; Forecasting": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Explicitly not in our scope",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"We do NOT do budgeting, forecasting, or planning",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Position: We focus on actual financial operations, not FP&amp;A",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"If asked: 'We integrate with best-in-class FP&amp;A tools like Adaptive Planning'",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"This focus allows us to excel at consolidation and close automation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Discovery: If they need budgeting, they may not be a fit (or need partner solution)"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Payment Processing Integration": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Not integrated with payment processors",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"No integration with Stripe, PayPal, payment gateways",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"No integration with HRIS/payroll systems (Rippling, ADP, Gusto)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"No integration with CRM (Salesforce, HubSpot) for revenue recognition",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"We pull GL data from ERP - that's the integration point",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"If these systems post to the ERP, data flows through ERP integration"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>sales: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: "Sales Process &amp; Methodology",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>icon: "MessageSquare",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>content: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Qualification Criteria (SPICED)": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Framework for qualifying opportunities",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Situation: Multi-entity operations (5+ entities ideal), complex consolidation, multiple ERPs, manual Excel processes",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Pain: Close taking 5+ days, manual consolidation, intercompany reconciliation burden, can't scale team, audit issues",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Impact: Delayed reporting, audit findings, team burnout, can't scale with growth, competitive disadvantage",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Critical Event: Upcoming audit, acquisition, entity additions, team turnover, growth inflection point",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Decision Process: Who's involved? Timeline? Budget? Approval process? Other vendors being evaluated?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Disqualifiers: &lt;5 entities with simple structure, no urgency, no budget, AP automation needs, budgeting/forecasting focus"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Discovery Best Practices": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "How to run effective discovery calls",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Pre-call prep: Review company website, LinkedIn, entity structure, tech stack, recent news",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Start broad: Understand overall finance operations, team structure, close process",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Dig into specifics: Number of entities, ERPs per entity, close timeline, consolidation method",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Map current process: How do you consolidate today? Intercompany reconciliation? Elimination entries?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Quantify pain: Days on close, hours on consolidation, hours on intercompany, error rates, audit findings",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Understand tech: What ERP(s)? Cloud or on-premise? IT approval process? Data security requirements?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Identify stakeholders: Who else needs to be involved? Economic buyer? Technical approver?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Uncover urgency: What's driving this now? Timeline? Upcoming events?"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Demo Approach": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "How to run compelling product demonstrations",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"ALWAYS tailor to their specific pain points from discovery",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Use LIVE PRODUCT demonstrations - show actual platform, not slides",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Deck is backup only - lead with live product",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Focus on: Entity structure (if multi-entity), consolidation, eliminations, matching agents, flux analysis",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Show agent transparency: Let them see how agents work, what criteria they use",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Interactive format: Encourage questions, let them explore",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Use their terminology: Their entity names, their accounts, their pain points",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Quantify during demo: 'This would save you X hours' based on discovery",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Best for: Pragmatic buyers who want to see actual capabilities"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"POC Guidelines - IMPORTANT": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "When and how to run proof-of-concept engagements",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"POC is NOT standard sales practice - only use when necessary",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"When to POC: Technical feasibility uncertain, complex scenario, specific use case validation needed",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Never POC for: Unqualified leads, exploratory conversations, standard use cases",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Eligible modules: Matching, Flux, Transaction Patrol (Consolidation only on special request)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"POC requirements: Clear success metrics, defined timeline (typically 2-4 weeks), committed champion",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Data needs: Representative sample data (may require NDA), specific use case scope",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Get commitment: Agree on next steps if POC succeeds BEFORE starting",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Avoid: Using POC as sales motion or for standard capabilities we've proven"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Mid-Market vs Enterprise": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Different sales motions for different segments",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Mid-Market (5-10 entities): Shorter cycle (1-3 months), single decision-maker, focused on specific pain, $50K-$100K ARR",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Enterprise (10+ entities): Longer cycle (3-6 months), multiple stakeholders, comprehensive evaluation, $150K+ ARR",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Key differences: Decision process, implementation scope, commercial terms, resource requirements",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Don't mix motions: Use different stage definitions and time limits for each",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Discovery question: How many entities? What's your decision process and timeline?"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Pipeline Stage Definitions": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Clear criteria for moving deals through pipeline",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"AE Validation: Initial qualification, uncertain technical feasibility, need more info",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Qualified: SPICED complete, multi-entity confirmed, clear pain, budget exists, decision process understood",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Discovery Complete: Full process mapping, entity structure documented, tech stack confirmed, quantified ROI",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Demo/Technical Validation: Live demo completed, technical feasibility confirmed, champions identified",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Proposal: Scoping complete, proposal delivered, commercial discussions underway",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Negotiation: Terms being finalized, legal review, final approvals pending",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Closed Won: Contract signed, SOW agreed, implementation kickoff scheduled"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Common Objections": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "How to handle typical prospect concerns",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Cost/ROI: '3-6 month payback typical through time savings. Customer X reduced close from 15 to 5 days'",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Implementation complexity: '4-9 weeks standard. Shadow ledger means no data migration or ERP changes'",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Change management: 'Finance teams love eliminating manual work. 95% adoption rate. They keep their ERP, just automate around it'",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Loss of control: 'Complete transparency into agent logic. You maintain full control. Audit trail for everything'",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Integration concerns: 'Read-only API integration. Works alongside your ERP. No rip and replace'",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Write-back limitations: 'Sage Intacct has write-back today. NetSuite coming Q1 2026. Export capability available for all'",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Security: 'SOC 1 &amp; SOC 2 Type II certified. Read-only access. Enterprise-grade security'"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Key Discovery Questions": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Essential questions to ask during qualification",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Entity structure: How many legal entities? Parent-sub relationships? Different ERPs?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Close process: How long does close take? What are biggest bottlenecks? How many people involved?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Consolidation: How do you consolidate today? Excel? Manual? Other tools? Time spent?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Intercompany: Volume of IC transactions? How do you reconcile? Elimination entries? Issues?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Tech stack: What ERP(s)? Cloud or on-premise? IT approval process for integrations?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Pain quantification: Hours on consolidation? Hours on IC reconciliation? Audit findings? Errors?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Team capacity: Size of team? Hiring plans? What do they spend time on?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Growth: Acquiring companies? Adding entities? International expansion?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Decision process: Who evaluates? Timeline? Budget? Other vendors considered?"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>modules: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: "Current Product Modules &amp; Status",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>icon: "Code",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>content: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Consolidation (LIVE)": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Core multi-entity consolidation - our primary value prop",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Status: Live and production-ready",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Features: Entity hierarchy, COA mapping, multi-currency (CTA), minority interest (NCI), journal entries",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Automation: 95% for consolidation rollup",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Limitations: No visual org chart, no bulk mapping updates yet",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Time to value: Week 2-3 for basic consolidation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"This is what we lead with - our strongest capability"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Intercompany Elimination (LIVE)": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Four methods for eliminating intercompany transactions",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Status: Live with multiple methods",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Methods: 1) Manual elimination entries, 2) Clearing Groups, 3) Matching Agent, 4) Network/Elimination Agent",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Automation: 70-90% depending on method (Matching Agent highest automation)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Features: Define clearing groups, matching rules, automated JE creation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Limitations: No cross-entity logic beyond direct matches (yet)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Time to value: Week 3-4 for elimination setup"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Matching Agents (LIVE)": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Transaction matching for intercompany and reconciliation",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Status: Live for intercompany matching",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Current use cases: Intercompany AR/AP matching, clearing account reconciliation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Accuracy: 80-95% auto-match rate in production",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Features: AI matching with confidence scores, discrepancy handling, task creation for exceptions",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Limitations: Bank/card reconciliation not yet available",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Roadmap: Bank reconciliation coming in future release",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Lead with: Intercompany matching use cases"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Transaction Patrol (LIVE)": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "GL monitoring for duplicates and anomalies",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Status: Live with core agents",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Available agents: Duplicate detector, Outlier detector (unusually large transactions)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Coming Q4 2025: Trend Variance agent, Custom agent builder",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Value: Proactive issue detection, cleaner data for faster close",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Integration: Alerts feed into Flux Analysis",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Limitations: Currently predefined agents only, custom agents coming soon"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Flux Analysis (LIVE - Limited)": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Variance analysis with AI commentary",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Status: Live but with limitations",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Features: COA-level P&amp;L and BS analysis, drill to register, AI commentary generation, manual editing, PDF/CSV export",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Limitations: Single GL at a time (no consolidated flux), no dimension filtering, no materiality thresholds",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Automation: ~70% of variance commentary automated",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Roadmap: Consolidated flux, dimension filtering, materiality flags in future",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Position as: Great for entity-level analysis, consolidated coming soon"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Close Management (LIVE)": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Task management and close workflow",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Status: Live",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Features: Task management, workflow automation, segregation of duties, audit trail, notifications, period locking",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Limitations: No Gantt charts, basic permissions only",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Value: Visibility into close progress, compliance support",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Enhancement: Advanced workflow automation coming Q3 2025"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Trigger Agents (LIVE)": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Automated actions based on GL conditions",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Status: Live",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Use cases: Automated JE creation, approval routing, notification workflows, sign-off automation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Configuration: Natural language setup of if-then rules",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Value: Eliminate repetitive tasks, ensure consistency",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Examples: Auto-create elimination JEs after matches signed off"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Bank/Card Reconciliation (ROADMAP)": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "NOT currently available - on roadmap",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Status: Not available - future roadmap item",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Do NOT position as current capability",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"If asked: 'That's on our roadmap. Today we focus on intercompany matching and consolidation'",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Use intercompany matching as proof point for matching capabilities",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Timeline: TBD - not committed"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>"Subledgers - Prepaid, Rev Rec, Leases (ADD-ON)": {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary: "Available as add-on, not core platform",</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>details: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Status: Available as separate subledger modules at additional cost",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Modules: Prepaid expenses, ASC 606 revenue recognition, ASC 842 lease accounting",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Pricing: Additional $18K per subledger module",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"NOT part of core platform or standard sales motion",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Do not lead with these - focus on consolidation and close"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const Icon = ({ name, size = 20, className = "" }) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const IconComponent = lucide[name];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!IconComponent) return null;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return React.createElement(IconComponent, { size, className });</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const filteredContent = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!searchTerm) return knowledgeBase;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const filtered = {};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Object.keys(knowledgeBase).forEach(tabKey =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>const tab = knowledgeBase[tabKey];</p>
+<p class="p1"><span class="Apple-converted-space">              </span>const matchedContent = {};</p>
+<p class="p2"><span class="Apple-converted-space">              </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>Object.keys(tab.content).forEach(sectionKey =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const section = tab.content[sectionKey];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const searchLower = searchTerm.toLowerCase();</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>sectionKey.toLowerCase().includes(searchLower) ||</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>section.summary.toLowerCase().includes(searchLower) ||</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>section.details.some(detail =&gt; detail.toLowerCase().includes(searchLower))</p>
+<p class="p1"><span class="Apple-converted-space">                </span>) {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>matchedContent[sectionKey] = section;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>});</p>
+<p class="p2"><span class="Apple-converted-space">              </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>if (Object.keys(matchedContent).length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>filtered[tabKey] = { ...tab, content: matchedContent };</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>return filtered;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const tabs = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'overview', label: 'Overview', icon: 'BookOpen' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'agents', label: 'Agents &amp; Modules', icon: 'Zap' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'modules', label: 'Module Status', icon: 'Code' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'useCases', label: 'Use Cases', icon: 'Target' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'buyers', label: 'Buyers', icon: 'Users' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'industries', label: 'Industries', icon: 'Briefcase' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'integrations', label: 'Integrations', icon: 'Code' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'avoidances', label: 'What NOT to Sell', icon: 'Target' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'sales', label: 'Sales Process', icon: 'MessageSquare' }</p>
+<p class="p1"><span class="Apple-converted-space">          </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const content = filteredContent();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const activeContent = content[activeTab];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="max-w-7xl mx-auto p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;h1 className="text-4xl font-bold text-slate-900 mb-2"&gt;Nominal Product Knowledge Base&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;p className="text-slate-600 text-lg"&gt;Complete product knowledge for Account Executives - Updated with accurate product capabilities&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="mb-6 relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;Icon name="Search" size={20} className="absolute left-4 top-3.5 text-slate-400" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;input</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type="text"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>placeholder="Search knowledge base..."</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>value={searchTerm}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>onChange={(e) =&gt; setSearchTerm(e.target.value)}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>className="w-full pl-12 pr-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white shadow-sm"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="flex gap-2 mb-6 overflow-x-auto pb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{tabs.map(tab =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const isVisible = content[tab.id];</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (!isVisible &amp;&amp; searchTerm) return null;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>key={tab.id}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>onClick={() =&gt; setActiveTab(tab.id)}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-colors ${</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>activeTab === tab.id</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>? 'bg-blue-600 text-white shadow-md'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>: 'bg-white text-slate-700 hover:bg-slate-100'</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}`}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;Icon name={tab.icon} size={18} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{tab.label}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>);</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>})}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>{activeContent ? (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="bg-white rounded-xl shadow-lg p-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;Icon name={activeContent.icon} size={28} className="text-blue-600" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;h2 className="text-3xl font-bold text-slate-900"&gt;{activeContent.title}&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>{Object.entries(activeContent.content).map(([key, section]) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div key={key} className="border border-slate-200 rounded-lg overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>onClick={() =&gt; toggleSection(key)}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>className="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 transition-colors"</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="flex-1 text-left"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;h3 className="text-lg font-semibold text-slate-900 mb-1"&gt;{key}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-slate-600"&gt;{section.summary}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{expandedSections[key] ? (</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;Icon name="ChevronDown" size={20} className="text-slate-400 flex-shrink-0 ml-4" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>) : (</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;Icon name="ChevronRight" size={20} className="text-slate-400 flex-shrink-0 ml-4" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/button&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                          </span></p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{expandedSections[key] &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="p-6 bg-white border-t border-slate-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;ul className="space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>{section.details.map((detail, idx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;li key={idx} className="flex gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span className="text-blue-600 mt-1 flex-shrink-0"&gt;•&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span className="text-slate-700 leading-relaxed"&gt;{detail}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>) : (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="bg-white rounded-xl shadow-lg p-12 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;Icon name="Search" size={48} className="mx-auto mb-4 text-slate-300" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-slate-600 text-lg"&gt;No results found for "{searchTerm}"&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-slate-500 mt-2"&gt;Try a different search term&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>ReactDOM.render(&lt;NominalKnowledgeBase /&gt;, document.getElementById('root'));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
